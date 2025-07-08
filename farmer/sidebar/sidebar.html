@@ -1,0 +1,17 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="toggle-btn" (click)="toggleSidebar()" [class.collapsed]="isCollapsed">
+  <fa-icon [icon]="faToggle" [style.transform]="isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)'"></fa-icon>
+</div>
+
+  <ul class="nav-links">
+    <li routerLinkActive="active"><a routerLink="/farmer"><fa-icon [icon]="faHouse"></fa-icon><span *ngIf="!isCollapsed">Dashboard</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/farmer/products"><fa-icon [icon]="faBoxOpen"></fa-icon><span *ngIf="!isCollapsed">Products</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/farmer/orders"><fa-icon [icon]="faReceipt"></fa-icon><span *ngIf="!isCollapsed">Orders</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/farmer/transactions"><fa-icon [icon]="faCreditCard"></fa-icon><span *ngIf="!isCollapsed">Transactions</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/farmer/messages"><fa-icon [icon]="faComments"></fa-icon><span *ngIf="!isCollapsed">Messages</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/farmer/logistics"><fa-icon [icon]="faTruck"></fa-icon><span *ngIf="!isCollapsed">Logistics</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/farmer/settings"><fa-icon [icon]="faCog"></fa-icon><span *ngIf="!isCollapsed">Settings</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/farmer/profile"><fa-icon [icon]="faUser"></fa-icon><span *ngIf="!isCollapsed">Profile</span></a></li>
+    <li><a (click)="logout()"><fa-icon [icon]="faLogout"></fa-icon><span *ngIf="!isCollapsed">Logout</span></a></li>
+  </ul>
+</div>

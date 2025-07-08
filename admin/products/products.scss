@@ -1,0 +1,111 @@
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 22px;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    input, select {
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  }
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+
+  img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .info {
+    padding: 15px;
+
+    h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 13px;
+      margin: 4px 0;
+
+      fa-icon {
+        margin-right: 5px;
+        color: #888;
+      }
+
+      &.status {
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 10px;
+      }
+
+      &.pending {
+        color: #f57c00;
+      }
+
+      &.approved {
+        color: #2e7d32;
+      }
+
+      &.flagged {
+        color: #c62828;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-around;
+    background: #f4f4f4;
+    padding: 10px;
+    border-top: 1px solid #eee;
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      fa-icon {
+        font-size: 16px;
+        color: #555;
+
+        &:hover {
+          color: #00796b;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+<div class="settings-container">
+  <h2><fa-icon [icon]="faKey"></fa-icon> Settings & System Config</h2>
+
+  <!-- Role Management -->
+  <section>
+    <h3><fa-icon [icon]="faUserShield"></fa-icon> Role Management</h3>
+    <p>Set permissions for custom roles (coming soon...)</p>
+  </section>
+
+  <!-- Theme -->
+  <section>
+    <h3><fa-icon [icon]="faPaintBrush"></fa-icon> Appearance</h3>
+    <label>
+      Theme:
+      <button (click)="toggleTheme()">
+        {{ settings.theme === 'light' ? 'Switch to Dark' : 'Switch to Light' }}
+      </button>
+    </label>
+
+    <label>
+      Primary Color:
+      <input type="color" [(ngModel)]="settings.platformColor" />
+    </label>
+  </section>
+
+  <!-- Security -->
+  <section>
+    <h3><fa-icon [icon]="faLock"></fa-icon> Security</h3>
+    <label>
+      <input type="checkbox" [(ngModel)]="settings.enable2FA" /> Enable Two-Factor Auth
+    </label>
+
+    <label>
+      Auto Logout Timeout (mins):
+      <input type="number" [(ngModel)]="settings.logoutTimeout" />
+    </label>
+
+    <label>
+      Whitelisted IPs:
+      <ul>
+        <li *ngFor="let ip of settings.allowedIPs">
+          {{ ip }}
+          <button (click)="removeIP(ip)">❌</button>
+        </li>
+      </ul>
+      <input type="text" #ipInput placeholder="Add IP" />
+      <button (click)="addIP(ipInput.value); ipInput.value=''">Add</button>
+    </label>
+  </section>
+
+  <!-- API Keys -->
+  <section>
+    <h3><fa-icon [icon]="faPowerOff"></fa-icon> API Keys & Integration</h3>
+    <p>(Coming soon: SMS/Payment/Webhooks integration control)</p>
+  </section>
+</div>

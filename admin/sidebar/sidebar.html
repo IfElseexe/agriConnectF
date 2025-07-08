@@ -1,0 +1,47 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="toggle-btn" (click)="toggleSidebar()">
+    <fa-icon [icon]="faToggle" [style.transform]="isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)'"></fa-icon>
+  </div>
+
+  <ul class="nav-links">
+    <li routerLinkActive="active">
+      <a routerLink="/admin"><fa-icon [icon]="faDashboard"></fa-icon><span *ngIf="!isCollapsed">Dashboard</span></a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/users"><fa-icon [icon]="faUsers"></fa-icon><span *ngIf="!isCollapsed">Users</span></a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/products"><fa-icon [icon]="faProducts"></fa-icon><span *ngIf="!isCollapsed">Products</span></a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/orders"><fa-icon [icon]="faOrders"></fa-icon><span *ngIf="!isCollapsed">Orders</span></a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/transactions"><fa-icon [icon]="faTransactions"></fa-icon><span *ngIf="!isCollapsed">Transactions</span></a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/analytics"><fa-icon [icon]="faAnalytics"></fa-icon><span *ngIf="!isCollapsed">Analytics</span></a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/messages"><fa-icon [icon]="faMessages"></fa-icon><span *ngIf="!isCollapsed">Messages</span></a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/disputes"><fa-icon [icon]="faDisputes"></fa-icon><span *ngIf="!isCollapsed">Disputes</span></a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/security"><fa-icon [icon]="faSecurity"></fa-icon><span *ngIf="!isCollapsed">Security</span></a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/announcements"><fa-icon [icon]="faAnnouncements"></fa-icon><span *ngIf="!isCollapsed">Announcements</span></a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/logistics"><fa-icon [icon]="faTruck"></fa-icon><span *ngIf="!isCollapsed">Logistics</span></a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/settings"><fa-icon [icon]="faSettings"></fa-icon><span *ngIf="!isCollapsed">Settings</span></a>
+    </li>
+    <li>
+      <a (click)="logout()"><fa-icon [icon]="faLogout"></fa-icon><span *ngIf="!isCollapsed">Logout</span></a>
+    </li>
+  </ul>
+</div>

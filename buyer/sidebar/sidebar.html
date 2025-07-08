@@ -1,0 +1,16 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="toggle-btn" (click)="toggleSidebar()" [class.collapsed]="isCollapsed">
+    <fa-icon [icon]="faToggle" [style.transform]="isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)'"></fa-icon>
+  </div>
+
+  <ul class="nav-links">
+    <li routerLinkActive="active"><a routerLink="/buyer"><fa-icon [icon]="faHouse"></fa-icon><span *ngIf="!isCollapsed">Dashboard</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/buyer/products"><fa-icon [icon]="faSearch"></fa-icon><span *ngIf="!isCollapsed">Browse</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/buyer/cart"><fa-icon [icon]="faShoppingCart"></fa-icon><span *ngIf="!isCollapsed">My Cart</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/buyer/orders"><fa-icon [icon]="faReceipt"></fa-icon><span *ngIf="!isCollapsed">My Orders</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/buyer/messages"><fa-icon [icon]="faComments"></fa-icon><span *ngIf="!isCollapsed">Messages</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/buyer/settings"><fa-icon [icon]="faCog"></fa-icon><span *ngIf="!isCollapsed">Settings</span></a></li>
+    <li routerLinkActive="active"><a routerLink="/buyer/profile"><fa-icon [icon]="faUser"></fa-icon><span *ngIf="!isCollapsed">Profile</span></a></li>
+    <li><a (click)="logout()"><fa-icon [icon]="faLogout"></fa-icon><span *ngIf="!isCollapsed">Logout</span></a></li>
+  </ul>
+</div>

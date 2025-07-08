@@ -1,0 +1,80 @@
+<div class="login-container">
+  <div class="login-form">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+      <h2 class="title">Market Login <fa-icon [icon]="faLeaf"></fa-icon></h2>
+      
+      <div class="input-field" [class.invalid]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+        <fa-icon [icon]="faUser"></fa-icon>
+        <input type="text" formControlName="username" placeholder="Username">
+      </div>
+      <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error-message">
+        Username is required
+      </div>
+      
+      <div class="input-field" [class.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <fa-icon [icon]="faLock"></fa-icon>
+        <input type="password" formControlName="password" placeholder="Password">
+      </div>
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+        Password is required
+      </div>
+      
+      <div class="input-field math-captcha" [class.invalid]="loginForm.get('mathAnswer')?.invalid && loginForm.get('mathAnswer')?.touched">
+        <fa-icon [icon]="faCalculator"></fa-icon>
+        <span>{{ mathQuestion }}</span>
+        <input type="text" formControlName="mathAnswer" placeholder="Answer">
+      </div>
+      <div *ngIf="loginForm.get('mathAnswer')?.invalid && loginForm.get('mathAnswer')?.touched" class="error-message">
+        <span *ngIf="loginForm.get('mathAnswer')?.errors?.['required']">Answer is required</span>
+        <span *ngIf="loginForm.get('mathAnswer')?.errors?.['pattern']">Numbers only please</span>
+      </div>
+      
+      <div class="role-selection">
+        <label>
+          <input type="radio" formControlName="role" value="farmer"> Farmer
+        </label>
+        <label>
+          <input type="radio" formControlName="role" value="buyer"> Buyer
+        </label>
+      </div>
+      
+      <button type="submit" class="btn solid" [disabled]="loginForm.invalid">Log In</button>
+      
+      <div class="signup-link">
+        Don't have an account? <a routerLink="/sign-up">Sign up here</a>
+      </div>
+      
+      <p class="social-text">Or connect with social platforms</p>
+      <div class="social-media">
+        <a href="#" class="social-icon">
+          <fa-icon [icon]="faFacebook"></fa-icon>
+        </a>
+        <a href="#" class="social-icon">
+          <fa-icon [icon]="faGoogle"></fa-icon>
+        </a>
+        <a href="#" class="social-icon">
+          <fa-icon [icon]="faLinkedin"></fa-icon>
+        </a>
+      </div>
+    </form>
+  </div>
+  
+  <div class="market-panel">
+    <div class="market-content">
+      <h3>Welcome to AgriMarket</h3>
+      <p *ngIf="loginForm.get('role')?.value === 'farmer'">
+        Connect directly with buyers and manage your agricultural products efficiently.
+      </p>
+      <p *ngIf="loginForm.get('role')?.value === 'buyer'">
+        Access fresh farm products directly from producers at competitive prices.
+      </p>
+      <p *ngIf="!loginForm.get('role')?.value">
+        Join our marketplace to connect farmers and buyers directly.
+      </p>
+      <img [src]="loginForm.get('role')?.value === 'farmer' ? 
+           'https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80' : 
+           'https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'" 
+           class="market-image" alt="Market illustration">
+    </div>
+  </div>
+</div>

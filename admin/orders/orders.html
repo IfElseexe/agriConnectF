@@ -1,0 +1,74 @@
+<div class="orders-header">
+  <div class="breadcrumbs">Admin Dashboard > Orders</div>
+  <h2><fa-icon [icon]="faTruck"></fa-icon> Orders & Deliveries</h2>
+
+  <div class="toolbar">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Search by buyer, product, farmer..."
+      (input)="search()"
+    />
+  </div>
+</div>
+
+<table class="orders-table">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Buyer</th>
+      <th>Farmer</th>
+      <th>Product</th>
+      <th>Qty</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>Proof</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of filtered">
+      <td>{{ order.id }}</td>
+      <td><fa-icon [icon]="faUser"></fa-icon> {{ order.buyerName }}</td>
+      <td>{{ order.farmerName }}</td>
+      <td>{{ order.product }}</td>
+      <td>{{ order.quantity }}</td>
+      <td>₦{{ order.price | number }}</td>
+      <td>
+        <select [(ngModel)]="order.status" (change)="updateStatus(order, order.status)">
+          <option>Pending</option>
+          <option>Confirmed</option>
+          <option>Shipped</option>
+          <option>Delivered</option>
+        </select>
+      </td>
+      <td>
+        <button (click)="viewProof(order)">
+          <fa-icon [icon]="faEye"></fa-icon>
+        </button>
+      </td>
+      <td>
+        <fa-icon
+          [icon]="faCheckCircle"
+          *ngIf="order.status === 'Delivered'"
+          class="delivered"
+        ></fa-icon>
+        <fa-icon
+          [icon]="faShippingFast"
+          *ngIf="order.status === 'Shipped'"
+          class="shipped"
+        ></fa-icon>
+        <fa-icon
+          [icon]="faClipboardCheck"
+          *ngIf="order.status === 'Confirmed'"
+          class="confirmed"
+        ></fa-icon>
+        <fa-icon
+          [icon]="faTimesCircle"
+          *ngIf="order.status === 'Pending'"
+          class="pending"
+        ></fa-icon>
+      </td>
+    </tr>
+  </tbody>
+</table>

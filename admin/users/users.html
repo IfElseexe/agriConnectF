@@ -1,0 +1,75 @@
+<div class="user-header">
+  <h2><fa-icon [icon]="faUsers"></fa-icon> User Management</h2>
+  <button (click)="exportToCSV()" class="btn primary">
+    <fa-icon [icon]="faDownload"></fa-icon> Export CSV
+  </button>
+</div>
+
+<div class="user-filters">
+  <label>
+    Role:
+    <select [(ngModel)]="selectedRole" (change)="filterUsers()">
+      <option value="All">All</option>
+      <option value="Farmer">Farmer</option>
+      <option value="Buyer">Buyer</option>
+    </select>
+  </label>
+
+  <label>
+    Status:
+    <select [(ngModel)]="selectedStatus" (change)="filterUsers()">
+      <option value="All">All</option>
+      <option value="Active">Active</option>
+      <option value="Suspended">Suspended</option>
+    </select>
+  </label>
+  <div class="user-search">
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    (input)="filterUsers()"
+    placeholder="Search by name or email"
+  />
+</div>
+</div>
+
+<div class="table-wrapper">
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th><fa-icon [icon]="faUser"></fa-icon> Name</th>
+        <th><fa-icon [icon]="faEnvelope"></fa-icon> Email</th>
+        <th><fa-icon [icon]="faIdBadge"></fa-icon> Role</th>
+        <th><fa-icon [icon]="faUserShield"></fa-icon> Status</th>
+        <th><fa-icon [icon]="faCalendarAlt"></fa-icon> Joined</th>
+        <th><fa-icon [icon]="faTools"></fa-icon> Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of pageSlice">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td><span [ngClass]="user.status.toLowerCase()">{{ user.status }}</span></td>
+        <td>{{ user.joined }}</td>
+        <td class="actions">
+          <button (click)="openUserProfile(user)" class="btn-icon blue">
+            <fa-icon [icon]="faEye"></fa-icon>
+          </button>
+          <button (click)="toggleUserStatus(user)" class="btn-icon orange">
+            <fa-icon [icon]="user.status === 'Active' ? faBan : faCheck"></fa-icon>
+          </button>
+          <button *ngIf="user.kycStatus === 'Pending'" (click)="verifyKYC(user)" class="btn-icon green">
+            <fa-icon [icon]="faIdCard"></fa-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination">
+  <button (click)="onPageChange(0)">1</button>
+  <button (click)="onPageChange(1)">2</button>
+  <button (click)="onPageChange(2)">3</button>
+</div>

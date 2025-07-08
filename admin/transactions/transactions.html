@@ -1,0 +1,56 @@
+<div class="tx-header">
+  <div class="breadcrumbs">Admin Dashboard > Transactions</div>
+  <h2><fa-icon [icon]="faMoneyBill"></fa-icon> Transactions & Payments</h2>
+
+  <div class="toolbar">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Search by user, method, or order"
+      (input)="search()"
+    />
+
+    <select [(ngModel)]="selectedStatus" (change)="filterStatus()">
+      <option>All</option>
+      <option>Success</option>
+      <option>Pending</option>
+      <option>Failed</option>
+    </select>
+
+    <button (click)="exportCSV()">
+      <fa-icon [icon]="faFileCsv"></fa-icon> Export CSV
+    </button>
+  </div>
+</div>
+
+<table class="tx-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User</th>
+      <th>Role</th>
+      <th>Amount</th>
+      <th>Method</th>
+      <th>Status</th>
+      <th>Date</th>
+      <th>Order</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tx of filtered">
+      <td>{{ tx.id }}</td>
+      <td><fa-icon [icon]="faUser"></fa-icon> {{ tx.user }}</td>
+      <td>{{ tx.role }}</td>
+      <td>₦{{ tx.amount | number }}</td>
+      <td>{{ tx.method }}</td>
+      <td>
+        <span [ngClass]="tx.status.toLowerCase()">
+          <fa-icon [icon]="tx.status === 'Success' ? faCheckCircle : tx.status === 'Pending' ? faClock : faTimes"></fa-icon>
+          {{ tx.status }}
+        </span>
+      </td>
+      <td>{{ tx.date }}</td>
+      <td>{{ tx.orderId }}</td>
+    </tr>
+  </tbody>
+</table>

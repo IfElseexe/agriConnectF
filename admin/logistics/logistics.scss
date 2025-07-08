@@ -1,0 +1,65 @@
+.logistics {
+  padding: 2rem;
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .section {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th, td {
+        padding: 0.8rem;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+      }
+
+      th {
+        background: #f0f0f0;
+      }
+
+      button {
+        background: none;
+        border: none;
+        color: #007bff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .active {
+        color: green;
+        font-weight: bold;
+      }
+
+      .suspended {
+        color: red;
+        font-weight: bold;
+      }
+    }
+  }
+}
