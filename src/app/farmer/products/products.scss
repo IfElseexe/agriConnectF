@@ -1,0 +1,181 @@
+.products-page {
+  padding: 1rem;
+  position: relative;
+}
+
+/* Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+    fa-icon {
+      font-size: 2rem;
+      color: #4caf50;
+    }
+
+    &.expiring fa-icon {
+      color: #ff9800;
+    }
+
+    :host-context(.dark) & {
+      background: #2a2a3b;
+      color: #f0f0f0;
+    }
+  }
+}
+
+/* Toggle */
+.view-toggle {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  button {
+    background: #eee;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+
+    &.active {
+      background: #4caf50;
+      color: #fff;
+    }
+
+    :host-context(.dark) & {
+      background: #333;
+    }
+  }
+}
+
+/* Card View */
+.product-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+
+  .card {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .info {
+      text-align: center;
+    }
+
+    .actions {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+
+      button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+
+        &.edit fa-icon {
+          color: #2196f3;
+        }
+
+        &.delete fa-icon {
+          color: #f44336;
+        }
+      }
+    }
+
+    :host-context(.dark) & {
+      background: #2a2a3b;
+      color: #f0f0f0;
+    }
+  }
+}
+
+/* Table View */
+.product-list table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+
+  th, td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+
+  th {
+    background: #f2f2f2;
+  }
+
+  td button {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+
+    &.edit fa-icon {
+      color: #2196f3;
+    }
+
+    &.delete fa-icon {
+      color: #f44336;
+    }
+  }
+
+  :host-context(.dark) & {
+    th {
+      background: #444;
+      color: #ddd;
+    }
+
+    td {
+      color: #ccc;
+    }
+  }
+}
+
+/* FAB */
+.fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 2rem;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  cursor: pointer;
+
+  &:hover {
+    background: #43a047;
+  }
+}

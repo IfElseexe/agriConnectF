@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>AgriConnect</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Early Dark Mode Script -->
+    <script>
+      (function () {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+            document.body.classList.add('dark-mode');
+          }
+        } catch (e) {
+          console.warn('Dark mode pre-load failed:', e);
+        }
+      })();
+    </script>
+
+    <!-- Early CSS background to prevent white blink -->
+    <style>
+      html.dark-mode,
+      body.dark-mode {
+        background-color: #1e1e2f !important;
+        color: #f5f5f5 !important;
+      }
+    </style>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  </head>
+
+  <body class="mat-typography">
+    <app-root></app-root>
+
+    <!-- These script tags must be AFTER the closing </head> -->
+    <script src="polyfills.js" type="module"></script>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

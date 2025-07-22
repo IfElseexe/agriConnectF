@@ -1,0 +1,124 @@
+.sidebar {
+  width: 220px;
+  background-color: #f8f9fa;
+  height: 100vh;
+  padding: 1rem;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: width 0.3s ease;
+
+  &.collapsed {
+    width: 70px;
+
+    .nav-links li a span {
+      display: none;
+    }
+
+    .sub-menu {
+      display: none;
+    }
+
+    .arrow {
+      display: none;
+    }
+  }
+
+  .toggle-btn {
+    position: absolute;
+    top: 1rem;
+    right: -0.8rem;
+    background-color: #000;
+    color: #fff;
+    padding: 0.4rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    fa-icon {
+      font-size: 1rem;
+    }
+
+    &:hover {
+      background-color: #222;
+    }
+  }
+
+  .nav-links {
+    list-style: none;
+    padding: 2rem 0 0;
+    margin: 0;
+
+    li {
+      margin: 1rem 0;
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: #333;
+        text-decoration: none;
+        padding: 0.6rem 1rem;
+        border-radius: 6px;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #e4e4e4;
+        }
+
+        fa-icon {
+          font-size: 1.1rem;
+        }
+      }
+
+      &.active a {
+        background-color: #d0f0c0;
+        font-weight: 600;
+      }
+
+      &.dropdown {
+        .arrow {
+          margin-left: auto;
+          transition: transform 0.2s ease;
+
+          &.open {
+            transform: rotate(180deg);
+          }
+        }
+
+        .sub-menu {
+          list-style: none;
+          padding-left: 2.5rem;
+          margin-top: 0.5rem;
+
+          li {
+            margin: 0.3rem 0;
+
+            a {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              font-size: 0.9rem;
+              color: #666;
+              padding: 0.4rem 0.6rem;
+              border-radius: 4px;
+
+              &:hover {
+                background-color: #eee;
+                color: #333;
+              }
+            }
+
+            &.active a {
+              color: #4caf50;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+  }
+}

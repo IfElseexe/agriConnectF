@@ -1,0 +1,35 @@
+<div class="products-container">
+  <h2 class="title">Approved Products</h2>
+
+  <div *ngIf="products.length === 0" class="no-products">
+    No approved products available.
+  </div>
+
+  <div class="products-grid">
+    <div class="product-card" *ngFor="let product of products" (click)="openModal(product)">
+      <img [src]="product.images?.[0] || 'https://via.placeholder.com/150'" alt="Product Image">
+      <h3>{{ product.name }}</h3>
+      <p>₦{{ product.price }}</p>
+      <p class="unit">{{ product.unit }}</p>
+    </div>
+  </div>
+
+  <!-- Product Detail Modal -->
+  <div class="modal-overlay" *ngIf="selectedProduct">
+    <div class="modal-content">
+      <button class="close-btn" (click)="closeModal()">
+        <fa-icon [icon]="'times'"></fa-icon>
+      </button>
+
+      <h2>{{ selectedProduct.name }}</h2>
+      <img [src]="selectedProduct.images?.[0] || 'https://via.placeholder.com/300'" alt="Product Image" class="modal-img" />
+
+      <p><strong>Price:</strong> ₦{{ selectedProduct.price }}</p>
+      <p><strong>Unit:</strong> {{ selectedProduct.unit }}</p>
+      <p><strong>Category:</strong> {{ selectedProduct.category }}</p>
+      <p><strong>Certifications:</strong> {{ selectedProduct.certifications }}</p>
+      <p><strong>Description:</strong> {{ selectedProduct.description }}</p>
+      <p><strong>Location:</strong> {{ selectedProduct.location }}</p>
+    </div>
+  </div>
+</div>

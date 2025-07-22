@@ -1,0 +1,34 @@
+<section class="sustainability">
+
+  <!-- Carbon Calculator -->
+  <div class="section">
+    <h3><fa-icon [icon]="faLeaf"></fa-icon> Carbon Footprint</h3>
+    <p><strong>Water Used:</strong> {{ carbonInputs.waterUsed }} L</p>
+    <p><strong>Energy Used:</strong> {{ carbonInputs.energyUsed }} kWh</p>
+    <p><strong>Diesel Used:</strong> {{ carbonInputs.diesel }} L</p>
+    <div class="result">
+      <p>🌍 Estimated Emissions: <strong>{{ estimatedEmissions.toFixed(2) }} kg CO₂</strong></p>
+    </div>
+  </div>
+
+  <!-- Waste Logs -->
+  <div class="section">
+    <h3><fa-icon [icon]="faRecycle"></fa-icon> Waste Management</h3>
+    <ul>
+      <li *ngFor="let log of wasteLogs">
+        {{ log.date }} — {{ log.type }} ({{ log.method }})
+      </li>
+    </ul>
+  </div>
+
+  <!-- Donations -->
+  <div class="section">
+    <h3><fa-icon [icon]="faDonate"></fa-icon> Donations</h3>
+    <ul>
+      <li *ngFor="let d of donations">
+        {{ d.date }} — {{ d.item }} to {{ d.recipient }}
+      </li>
+    </ul>
+  </div>
+
+</section>

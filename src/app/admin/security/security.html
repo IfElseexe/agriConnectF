@@ -1,0 +1,45 @@
+<div class="security-page">
+  <h2><fa-icon [icon]="faLock"></fa-icon> Security & Compliance</h2>
+
+  <!-- Two Factor -->
+  <div class="card">
+    <h3><fa-icon [icon]="faUserShield"></fa-icon> Two-Factor Authentication</h3>
+    <p>Enhance admin login security with 2FA.</p>
+    <button (click)="toggle2FA()">
+      {{ twoFactorEnabled ? 'Disable' : 'Enable' }} 2FA
+    </button>
+  </div>
+
+  <!-- IP Whitelisting -->
+  <div class="card">
+    <h3><fa-icon [icon]="faNetwork"></fa-icon> IP Whitelisting</h3>
+    <p>Restrict access to trusted networks only.</p>
+    <ul>
+      <li *ngFor="let ip of ipWhitelist">
+        {{ ip }}
+        <button class="danger" (click)="removeIP(ip)">Remove</button>
+      </li>
+    </ul>
+    <input type="text" [(ngModel)]="newIP" placeholder="Enter new IP" />
+    <button (click)="addIP()">Add IP</button>
+  </div>
+
+  <!-- GDPR Tools -->
+  <div class="card">
+    <h3><fa-icon [icon]="faTrash"></fa-icon> Data Compliance</h3>
+    <p>Manage user data according to privacy regulations.</p>
+    <button (click)="exportData()"><fa-icon [icon]="faDownload"></fa-icon> Export Data</button>
+    <button class="danger" (click)="deleteData()"><fa-icon [icon]="faTrash"></fa-icon> Delete Data</button>
+  </div>
+
+  <!-- Audit Logs -->
+  <div class="card">
+    <h3><fa-icon [icon]="faAudit"></fa-icon> Admin Audit Logs</h3>
+    <ul>
+      <li *ngFor="let log of auditLogs">
+        <strong>{{ log.user }}</strong> — {{ log.action }} <br />
+        <small>{{ log.timestamp }}</small>
+      </li>
+    </ul>
+  </div>
+</div>

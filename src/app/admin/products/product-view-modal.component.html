@@ -1,0 +1,23 @@
+<div class="modal-overlay" (click)="close.emit()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="close.emit()">
+      <fa-icon [icon]="faTimes"></fa-icon>
+    </button>
+
+    <h2>{{ product.name }}</h2>
+    <img [src]="product.imageUrl || 'https://via.placeholder.com/400'" alt="{{ product.name }}" />
+
+    <div class="details">
+      <p><strong>Category:</strong> {{ product.category }}</p>
+      <p><strong>Variety:</strong> {{ product.variety }}</p>
+      <p><strong>Quantity:</strong> {{ product.quantity }} {{ product.unit }}</p>
+      <p><strong>Price:</strong> ₦{{ product.price | number }}</p>
+      <p><strong>Certifications:</strong> {{ product.certifications || 'None' }}</p>
+      <p><strong>Storage:</strong> {{ product.storage || 'Not specified' }}</p>
+      <p><strong>Harvest Period:</strong> {{ product.harvestStart }} - {{ product.harvestEnd }}</p>
+      <p><strong>Farmer:</strong> {{ product.farmerName }}</p>
+      <p><strong>Status:</strong> {{ product.status }}</p>
+      <p><strong>Created:</strong> {{ product.createdAt | date:'medium' }}</p>
+    </div>
+  </div>
+</div>

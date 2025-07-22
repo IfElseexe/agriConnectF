@@ -1,0 +1,52 @@
+<div class="messaging-container">
+  <!-- Chat List -->
+  <div class="chat-list">
+    <h3>Messages</h3>
+    <input type="text" placeholder="Search chats..." [(ngModel)]="searchTerm" />
+    <div class="chat-item" *ngFor="let chat of chatList | filter:searchTerm" (click)="selectChat(chat)">
+      <div class="avatar" [class.online]="chat.online">{{ chat.name.charAt(0) }}</div>
+      <div class="chat-info">
+        <div class="top-row">
+          <strong>{{ chat.name }}</strong>
+          <span class="time">{{ chat.time }}</span>
+        </div>
+        <div class="bottom-row">
+          <span class="last-message">{{ chat.lastMessage }}</span>
+          <span *ngIf="chat.unread > 0" class="unread">{{ chat.unread }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Window -->
+  <div class="chat-window">
+    <div class="chat-header">
+      <button class="back-btn" (click)="backToList()">
+        <fa-icon [icon]="faChevronLeft"></fa-icon>
+      </button>
+      <div class="avatar">{{ selectedChat.name.charAt(0) }}</div>
+      <div class="chat-meta">
+        <h4>{{ selectedChat.name }}</h4>
+        <p>{{ selectedChat.online ? 'Online' : 'Offline' }}</p>
+      </div>
+      <div class="chat-actions">
+        <fa-icon [icon]="faPhone"></fa-icon>
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </div>
+    </div>
+
+    <div class="chat-body">
+      <div *ngFor="let msg of selectedChat.messages" [class.self]="msg.sender === 'me'" class="message">
+        <p>{{ msg.text }}</p>
+        <span>{{ msg.time }}</span>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <button><fa-icon [icon]="faPaperclip"></fa-icon></button>
+      <button><fa-icon [icon]="faSmile"></fa-icon></button>
+      <input type="text" placeholder="Type your message..." [(ngModel)]="messageText" (keyup.enter)="sendMessage()" />
+      <button (click)="sendMessage()"><fa-icon [icon]="faPaperPlane"></fa-icon></button>
+    </div>
+  </div>
+</div>

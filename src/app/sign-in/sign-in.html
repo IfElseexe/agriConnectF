@@ -1,0 +1,50 @@
+<div class="login-container">
+  <div class="login-form">
+    <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+      <h2 class="title">AgriConnect Login <fa-icon [icon]="faLeaf"></fa-icon></h2>
+
+      <!-- Email -->
+      <div class="input-field" [class.invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <fa-icon [icon]="faUser"></fa-icon>
+        <input type="email" formControlName="email" placeholder="Email" />
+      </div>
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+        Valid email is required
+      </div>
+
+      <!-- Password -->
+      <div class="input-field" [class.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <fa-icon [icon]="faLock"></fa-icon>
+        <input type="password" formControlName="password" placeholder="Password" />
+      </div>
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+        Password is required
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn solid" [disabled]="loginForm.invalid">Log In</button>
+
+      <!-- Link to signup -->
+      <div class="signup-link">
+        Don’t have an account? <a routerLink="/sign-up">Sign up here</a>
+      </div>
+
+      <p class="social-text">Or connect with</p>
+      <div class="social-media">
+        <a href="#" class="social-icon"><fa-icon [icon]="faFacebook"></fa-icon></a>
+        <a href="#" class="social-icon"><fa-icon [icon]="faGoogle"></fa-icon></a>
+        <a href="#" class="social-icon"><fa-icon [icon]="faLinkedin"></fa-icon></a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Side Panel -->
+  <div class="market-panel">
+    <div class="market-content">
+      <h3>Welcome to AgriConnect</h3>
+      <p>Access fresh, verified farm products directly from trusted producers across Nigeria.</p>
+      <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=1000&q=80"
+           class="market-image" alt="AgriConnect" />
+    </div>
+  </div>
+</div>

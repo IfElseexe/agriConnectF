@@ -1,0 +1,60 @@
+<div class="logistics">
+  <h2><fa-icon [icon]="faTruck"></fa-icon> Logistics Management</h2>
+
+  <div class="section">
+    <h3><fa-icon [icon]="faUserTie"></fa-icon> Drivers</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>License</th>
+          <th>Status</th>
+          <th>Rating</th>
+          <th>Vehicle</th>
+          <th>Trips</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let driver of drivers">
+          <td>{{ driver.name }}</td>
+          <td>{{ driver.license }}</td>
+          <td><span [class.active]="driver.status === 'active'" [class.suspended]="driver.status === 'suspended'">{{ driver.status }}</span></td>
+          <td>{{ driver.rating }}</td>
+          <td>{{ driver.assignedVehicle }}</td>
+          <td>{{ driver.trips }}</td>
+          <td>
+            <button (click)="toggleDriverStatus(driver)">
+              <fa-icon [icon]="driver.status === 'active' ? faBan : faCheckCircle"></fa-icon>
+              {{ driver.status === 'active' ? 'Suspend' : 'Activate' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3><fa-icon [icon]="faCar"></fa-icon> Vehicles</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Plate</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Driver</th>
+          <th>Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vehicle of vehicles">
+          <td>{{ vehicle.plate }}</td>
+          <td>{{ vehicle.type }}</td>
+          <td>{{ vehicle.status }}</td>
+          <td>{{ vehicle.assignedDriver }}</td>
+          <td>{{ vehicle.usageCount }} trips</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

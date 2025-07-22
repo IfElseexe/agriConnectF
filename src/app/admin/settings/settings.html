@@ -1,0 +1,66 @@
+<div class="settings-container">
+  <h2><fa-icon [icon]="faUserShield"></fa-icon> Admin Settings</h2>
+
+  <!-- Theme Toggle -->
+  <div class="setting-item">
+    <div>
+      <fa-icon [icon]="faPaintBrush"></fa-icon>
+      <label for="themeToggle">Dark Mode</label>
+    </div>
+    <label class="switch">
+      <input type="checkbox" [checked]="settings.theme === 'dark'" (change)="toggleTheme()" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- 2FA Toggle -->
+  <div class="setting-item">
+    <div>
+      <fa-icon [icon]="faLock"></fa-icon>
+      <label for="twoFAToggle">Enable 2FA</label>
+    </div>
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="settings.enable2FA" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- Session Timeout -->
+  <div class="setting-item">
+    <div>
+      <fa-icon [icon]="faPowerOff"></fa-icon>
+      <label>Auto Logout Timeout (mins)</label>
+    </div>
+    <input type="number" min="1" [(ngModel)]="settings.logoutTimeout" />
+  </div>
+
+  <!-- Platform Color -->
+  <div class="setting-item">
+    <div>
+      <fa-icon [icon]="faPaintBrush"></fa-icon>
+      <label>Platform Theme Color</label>
+    </div>
+    <input type="color" [value]="settings.platformColor" (input)="updatePlatformColor($event)" />
+  </div>
+
+  <!-- IP Whitelisting -->
+  <div class="setting-item ip-list">
+    <div>
+      <fa-icon [icon]="faKey"></fa-icon>
+      <label>IP Whitelist</label>
+    </div>
+    <div class="ip-control">
+      <input type="text" placeholder="Enter IP" [(ngModel)]="ipInput" />
+      <button (click)="addIP()"><fa-icon [icon]="faPlus"></fa-icon></button>
+    </div>
+
+    <ul>
+      <li *ngFor="let ip of settings.allowedIPs">
+        {{ ip }}
+        <button class="remove-btn" (click)="removeIP(ip)">
+          <fa-icon [icon]="faTrash"></fa-icon>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

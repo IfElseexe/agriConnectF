@@ -1,0 +1,93 @@
+:host {
+  display: block;
+  padding: 2rem;
+  background-color: #f9f9f9;
+
+  :host-context(.dark) {
+    background-color: #1c1c1c;
+    color: #eee;
+
+    .card, .quick-actions button {
+      background-color: #2a2a2a;
+      color: #eee;
+    }
+
+    .chart-container canvas {
+      background-color: #2a2a2a;
+    }
+  }
+}
+
+.buyer-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+
+    .card {
+      background: white;
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      fa-icon {
+        font-size: 1.5rem;
+        color: #3f51b5;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 1.4rem;
+      }
+
+      p {
+        margin: 0;
+        color: #777;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    button {
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover {
+        background-color: #32408f;
+      }
+
+      fa-icon {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .chart-container {
+    height: 300px;
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+}

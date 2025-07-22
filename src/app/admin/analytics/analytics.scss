@@ -1,0 +1,114 @@
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+  }
+
+  button {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.analytics-cards {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+
+  .card {
+    flex: 1;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+
+    h4 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    p {
+      margin: 5px 0 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    fa-icon {
+      font-size: 28px;
+      color: #4caf50;
+    }
+  }
+}
+
+.charts-container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+
+  .chart {
+    flex: 1;
+    min-width: 300px;
+  }
+}
+/* === Dark Mode Styles for Analytics === */
+:host-context(body.dark-mode) {
+  .analytics-header {
+    h2 {
+      color: #f5f5f5;
+    }
+
+    button {
+      background: #2e7d32;
+      color: #ffffff;
+
+      &:hover {
+        background-color: #25642a;
+      }
+    }
+  }
+
+  .analytics-cards {
+    .card {
+      background: #2c2c3a;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+      h4 {
+        color: #dcdcdc;
+      }
+
+      p {
+        color: #ffffff;
+      }
+
+      fa-icon {
+        color: #81c784;
+      }
+    }
+  }
+
+  .charts-container {
+    .chart {
+      background-color: #1e1e2f;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+    }
+  }
+}

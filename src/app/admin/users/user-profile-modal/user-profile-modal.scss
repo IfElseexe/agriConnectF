@@ -1,0 +1,51 @@
+.modal-content {
+  padding: 24px;
+  background: white;
+  color: #333;
+  max-width: 500px;
+
+  h2, h3 {
+    margin-bottom: 12px;
+    color: #2c7a7b;
+  }
+
+  .user-info p, .kyc-section p {
+    margin: 6px 0;
+  }
+
+  .kyc-images {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+
+    img {
+      max-width: 200px;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+  }
+
+  .no-kyc {
+    margin-top: 12px;
+    color: #999;
+    font-style: italic;
+  }
+}
+
+:host-context(body.dark-mode) .modal-content {
+  background: #1a202c;
+  color: #f0f0f0;
+
+  h2, h3 {
+    color: #90cdf4;
+  }
+
+  .kyc-images img {
+    border-color: #4a5568;
+  }
+
+  .no-kyc {
+    color: #cbd5e0;
+  }
+}

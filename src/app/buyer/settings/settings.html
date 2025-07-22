@@ -1,0 +1,90 @@
+<div class="settings-wrapper">
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <img [src]="user.image" alt="Profile" />
+    <div class="info">
+      <h3>{{ user.name }}</h3>
+      <p>&commat;{{ user.username }}</p>
+
+
+    </div>
+    <button>Edit</button>
+  </div>
+
+  <!-- Settings Sections -->
+  <div class="settings-section">
+    <h4>Account</h4>
+    <div class="setting-item">
+      <fa-icon [icon]="['fas','user']"></fa-icon>
+      <span>Email: {{ user.email }}</span>
+      <fa-icon [icon]="['fas','chevron-right']"></fa-icon>
+    </div>
+    <div class="setting-item">
+      <fa-icon [icon]="['fas','user']"></fa-icon>
+      <span>Phone: {{ user.phone }}</span>
+      <fa-icon [icon]="['fas','chevron-right']"></fa-icon>
+    </div>
+    <div class="setting-item">
+      <fa-icon [icon]="['fas','lock']"></fa-icon>
+      <span>Change Password</span>
+      <fa-icon [icon]="['fas','chevron-right']"></fa-icon>
+    </div>
+  </div>
+
+  <div class="settings-section">
+    <h4>Security</h4>
+    <div class="setting-item">
+      <fa-icon [icon]="['fas','lock']"></fa-icon>
+      <span>Two-Factor Authentication</span>
+      <fa-icon [icon]="['fas','chevron-right']"></fa-icon>
+    </div>
+    <div class="setting-item">
+      <fa-icon [icon]="['fas','lock']"></fa-icon>
+      <span>Login Activity</span>
+      <fa-icon [icon]="['fas','chevron-right']"></fa-icon>
+    </div>
+  </div>
+
+  <div class="settings-section">
+    <h4>Notifications</h4>
+    <div class="setting-item">
+      <fa-icon [icon]="['fas','bell']"></fa-icon>
+      <span>Order Updates</span>
+    </div>
+    <div class="setting-item">
+      <fa-icon [icon]="['fas','bell']"></fa-icon>
+      <span>Promotions</span>
+    </div>
+    <div class="setting-item">
+      <fa-icon [icon]="['fas','bell']"></fa-icon>
+      <span>App Alerts</span>
+    </div>
+  </div>
+
+  <div class="settings-section">
+    <h4>Help</h4>
+    <div class="setting-item">
+      <fa-icon [icon]="['fas','question-circle']"></fa-icon>
+      <span>Help Center</span>
+      <fa-icon [icon]="['fas','chevron-right']"></fa-icon>
+    </div>
+    <div class="setting-item">
+      <fa-icon [icon]="['fas','question-circle']"></fa-icon>
+      <span>Report a Problem</span>
+      <fa-icon [icon]="['fas','chevron-right']"></fa-icon>
+    </div>
+  </div>
+
+  <div class="settings-section">
+    <h4>About</h4>
+    <div class="setting-item">
+      <fa-icon [icon]="['fas','info-circle']"></fa-icon>
+      <span>Version 1.0.0</span>
+    </div>
+    <div class="setting-item">
+      <fa-icon [icon]="['fas','info-circle']"></fa-icon>
+      <span>Terms & Privacy</span>
+      <fa-icon [icon]="['fas','chevron-right']"></fa-icon>
+    </div>
+  </div>
+</div>

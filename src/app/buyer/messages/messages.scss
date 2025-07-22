@@ -1,0 +1,151 @@
+.messages-container {
+  display: flex;
+  height: 100%;
+  background-color: #f4f6f8;
+  font-family: inherit;
+}
+
+/* Sidebar */
+.chat-sidebar {
+  width: 260px;
+  background: white;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .chat-list {
+    overflow-y: auto;
+    flex: 1;
+
+    .chat-item {
+      display: flex;
+      padding: 0.8rem 1rem;
+      cursor: pointer;
+      align-items: center;
+      transition: background 0.3s;
+
+      &.active,
+      &:hover {
+        background: #f1f1f1;
+      }
+
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 0.8rem;
+      }
+
+      .chat-info {
+        p {
+          margin: 0;
+          font-weight: 600;
+        }
+
+        .preview {
+          font-size: 0.85rem;
+          color: #666;
+        }
+      }
+    }
+  }
+}
+
+/* Chat Main */
+.chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  .chat-header {
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+
+    img {
+      width: 40px;
+      height: 40px;
+      margin-right: 1rem;
+      border-radius: 50%;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+  }
+
+  .chat-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    .chat-bubble {
+      max-width: 65%;
+      padding: 0.6rem 1rem;
+      border-radius: 16px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+
+      &.from-them {
+        align-self: flex-start;
+        background: white;
+        border-top-left-radius: 0;
+      }
+
+      &.from-me {
+        align-self: flex-end;
+        background: #dcf8c6;
+        border-top-right-radius: 0;
+      }
+    }
+  }
+
+  .chat-input-area {
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    border-top: 1px solid #ddd;
+
+    input {
+      flex: 1;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      outline: none;
+      margin: 0 0.5rem;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      color: #555;
+      cursor: pointer;
+    }
+
+    .send-btn {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 0.5rem 0.9rem;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  }
+}

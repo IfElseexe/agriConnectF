@@ -1,0 +1,107 @@
+:host {
+  display: block;
+  padding: 2rem;
+  background-color: #f4f4f4;
+  color: #1a1a1a;
+
+  // DARK MODE
+  :host-context(.dark-mode) {
+    background-color: #1c1e26;
+    color: #e0e0e0;
+
+    .card,
+    .chart,
+    .notifications {
+      background: #252833;
+      border: 1px solid #3a3d4a;
+
+      h4, p, h3, span {
+        color: #e0e0e0;
+      }
+    }
+
+    .card-icon,
+    .notif-icon {
+      color: #90caf9;
+    }
+  }
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      .card-icon {
+        font-size: 1.8rem;
+        color: #4caf50;
+      }
+
+      h4 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      p {
+        margin: 0;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+ .chart {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 500px; // ✅ Add this line or adjust as needed
+  position: relative;
+}
+
+  .notifications {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+
+    ul {
+      padding: 0;
+      list-style: none;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #ddd;
+
+        .notif-icon {
+          color: #ff9800;
+        }
+
+        span {
+          flex: 1;
+        }
+      }
+    }
+  }
+}

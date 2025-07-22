@@ -1,0 +1,58 @@
+<section class="harvest-planning">
+  <!-- Calendar -->
+  <div class="section">
+    <h3><fa-icon [icon]="faCalendar"></fa-icon> Calendar Schedule</h3>
+    <ul class="calendar-list">
+      <li *ngFor="let event of schedule">
+        <strong>{{ event.date }}</strong> — {{ event.type }} ({{ event.crop }})
+      </li>
+    </ul>
+  </div>
+
+  <!-- Team Assignment -->
+  <div class="section">
+    <h3><fa-icon [icon]="faTeam"></fa-icon> Team Assignment</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Member</th>
+          <th>Task</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of team">
+          <td>{{ person.name }}</td>
+          <td>{{ person.task }}</td>
+          <td>{{ person.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Equipment Scheduling -->
+  <div class="section">
+    <h3><fa-icon [icon]="faTractor"></fa-icon> Equipment Scheduling</h3>
+    <ul class="equipment-list">
+      <li *ngFor="let item of equipment">
+        <strong>{{ item.name }}</strong> — {{ item.purpose }} on {{ item.scheduled }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Yield Prediction -->
+  <div class="section yield">
+    <h3><fa-icon [icon]="faChart"></fa-icon> Yield Prediction</h3>
+    <p>{{ predictedYield }}</p>
+  </div>
+
+  <!-- Task Reminders -->
+  <div class="section">
+    <h3><fa-icon [icon]="faBell"></fa-icon> Task Reminders</h3>
+    <ul class="reminder-list">
+      <li *ngFor="let reminder of reminders">
+        <strong>{{ reminder.date }}</strong> — {{ reminder.task }}
+      </li>
+    </ul>
+  </div>
+</section>

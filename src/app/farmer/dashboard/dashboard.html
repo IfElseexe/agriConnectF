@@ -1,0 +1,64 @@
+<section class="dashboard-container">
+  <!-- Header Section -->
+  <div class="header">
+    <h2>Welcome Back, {{ farmerName }}</h2>
+    <p>Here’s a quick look at your activity.</p>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="cards">
+    <div class="card">
+      <fa-icon [icon]="faBox" class="card-icon"></fa-icon>
+      <div>
+        <h4>Products</h4>
+        <p>{{ productCount }}</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <fa-icon [icon]="faCart" class="card-icon"></fa-icon>
+      <div>
+        <h4>Orders</h4>
+        <p>{{ orderCount }}</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <fa-icon [icon]="faWallet" class="card-icon"></fa-icon>
+      <div>
+        <h4>Earnings</h4>
+        <p>{{ earnings | currency: '₦' }}</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <fa-icon [icon]="faComments" class="card-icon"></fa-icon>
+      <div>
+        <h4>Messages</h4>
+        <p>{{ messageCount }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sales Chart -->
+  <div class="chart">
+    <h3>Sales Overview</h3>
+    <canvas
+      baseChart
+      [data]="chartData"
+      [options]="chartOptions"
+      [type]="'line'">
+    </canvas>
+  </div>
+
+  <!-- Notifications -->
+  <div class="notifications">
+    <h3>Recent Notifications</h3>
+    <ul>
+      <li *ngFor="let notification of notifications">
+        <fa-icon [icon]="faBell" class="notif-icon"></fa-icon>
+        <span>{{ notification.message }}</span>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,82 @@
+<section class="inventory-container">
+
+  <!-- Header Section -->
+  <div class="inventory-header">
+    <h2><fa-icon [icon]="faBoxesStacked"></fa-icon> Inventory</h2>
+
+    <div class="inventory-controls">
+      <button (click)="toggleAddInventory()" class="add-btn">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <button (click)="toggleView()" class="toggle-btn">
+        <fa-icon [icon]="isCardView ? faList : faTh"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Add Inventory Form -->
+  <div class="add-inventory-form" *ngIf="showAddInventory">
+    <form>
+      <h3>Add Inventory Item</h3>
+      <div class="form-grid">
+        <input type="text" placeholder="Product Name" required />
+        <input type="text" placeholder="Batch Number" />
+        <input type="number" placeholder="Quantity" />
+        <input type="text" placeholder="Warehouse/Bin Location" />
+        <input type="date" placeholder="Expiry Date" />
+        <textarea placeholder="Notes (optional)"></textarea>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Inventory Card View -->
+  <div class="card-view" *ngIf="isCardView">
+    <div class="inventory-card" *ngFor="let item of inventoryList">
+      <h4>{{ item.name }}</h4>
+      <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+      <p><strong>Batch:</strong> {{ item.batch }}</p>
+      <p><strong>Location:</strong> {{ item.location }}</p>
+      <p><strong>Expiry:</strong> {{ item.expiry }}</p>
+      <p>
+        <strong>Status:</strong>
+        <span [ngClass]="item.status.toLowerCase()">{{ item.status }}</span>
+      </p>
+      <div class="actions">
+        <button (click)="editItem(item)"><fa-icon [icon]="faEdit"></fa-icon></button>
+        <button (click)="deleteItem(item)"><fa-icon [icon]="faTrash"></fa-icon></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inventory Table View -->
+  <div class="table-view" *ngIf="!isCardView">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th>Batch</th>
+          <th>Location</th>
+          <th>Expiry</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of inventoryList">
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.batch }}</td>
+          <td>{{ item.location }}</td>
+          <td>{{ item.expiry }}</td>
+          <td [ngClass]="item.status.toLowerCase()">{{ item.status }}</td>
+          <td>
+            <button (click)="editItem(item)"><fa-icon [icon]="faEdit"></fa-icon></button>
+            <button (click)="deleteItem(item)"><fa-icon [icon]="faTrash"></fa-icon></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

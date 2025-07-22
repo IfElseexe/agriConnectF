@@ -1,0 +1,100 @@
+<div class="messages-container">
+  <div class="sidebar">
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search by name..."
+        [(ngModel)]="searchQuery"
+        (input)="searchConversations()"
+      />
+      <fa-icon [icon]="faSearch"></fa-icon>
+    </div>
+
+    <div class="conversation-list">
+      <div
+        class="conversation"
+        *ngFor="let thread of filteredConversations"
+        (click)="selectThread(thread)"
+        [class.active]="thread === selectedThread"
+      >
+        <fa-icon [icon]="faMsg"></fa-icon>
+        <span>{{ thread.participants }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-panel" *ngIf="selectedThread">
+    <div class="chat-header">
+      <span>{{ selectedThread.participants }}</span>
+      <button (click)="leaveThread()">
+        <fa-icon [icon]="faLeave"></fa-icon> Leave
+      </button>
+    </div>
+
+    <div class="chat-body">
+      <div
+        class="chat-message"
+        *ngFor="let message of selectedThread.messages"
+        [class.admin]="message.sender === 'Admin'"
+        [class.user]="message.sender === 'User'"
+      >
+        <div class="bubble">
+          <span>{{ message.text }}</span>
+          <small>{{ message.timestamp | date: 'shortTime' }}</small>
+        </div>
+      </div>
+
+      <div class="chat-preview" *ngIf="attachedImageUrl">
+        <img [src]="attachedImageUrl" alt="Preview" />
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <input
+        type="file"
+        hidden
+        #fileInput
+        (change)="handleFileInput($event)"
+      />
+      <button (click)="fileInput.click()" title="Attach image">
+        <fa-icon [icon]="faAttach"></fa-icon>
+      </button>
+
+      <button (click)="showEmojiPicker = !showEmojiPicker" title="Emoji">
+        <fa-icon [icon]="faEmoji"></fa-icon>
+      </button>
+
+      <!--<emoji-picker
+        *ngIf="showEmojiPicker"
+        (emojiSelect)="handleEmojiSelect($event)"
+      ></emoji-picker>-->
+
+      <textarea
+        [(ngModel)]="adminMessage"
+        placeholder="Type your message..."
+        rows="1"
+      ></textarea>
+
+      <button (click)="sendAdminMessage()" title="Send">
+        <fa-icon [icon]="faSend"></fa-icon>
+      </button>
+    </div>
+
+    <div class="canned-replies">
+      <p>Canned Replies:</p>
+      <div class="tags">
+        <span
+          class="reply"
+          *ngFor="let reply of cannedReplies"
+          (click)="applyCannedReply(reply)"
+          >{{ reply }}</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="no-thread" *ngIf="!selectedThread">
+    <fa-icon [icon]="faMsg" size="3x"></fa-icon>
+    <p>Select a conversation to begin</p>
+  </div>
+</div>

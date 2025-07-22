@@ -1,0 +1,51 @@
+<section class="quality-control">
+
+  <!-- Size Grading -->
+  <div class="section">
+    <h3><fa-icon [icon]="faSize"></fa-icon> Size Grading</h3>
+    <ul>
+      <li *ngFor="let grade of grading">
+        {{ grade.size }} — {{ grade.count }} pcs
+      </li>
+    </ul>
+  </div>
+
+  <!-- Color Consistency -->
+  <div class="section">
+    <h3><fa-icon [icon]="faColor"></fa-icon> Color Consistency</h3>
+    <ul>
+      <li *ngFor="let color of colorGrades">
+        {{ color.shade }} — {{ color.consistency }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Brix Level -->
+  <div class="section brix">
+    <h3><fa-icon [icon]="faBrix"></fa-icon> Brix Level (Sweetness)</h3>
+    <p>{{ brixLevel }} °Bx</p>
+  </div>
+
+  <!-- Defect Tracking -->
+  <div class="section">
+    <h3><fa-icon [icon]="faCamera"></fa-icon> Defect Tracking</h3>
+    <div class="defect-grid">
+      <div class="defect" *ngFor="let d of defects">
+        <img [src]="d.photo" alt="Defect" />
+        <p><strong>{{ d.type }}</strong>: {{ d.reason }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compliance Checks -->
+  <div class="section">
+    <h3><fa-icon [icon]="faCompliance"></fa-icon> Compliance Checks</h3>
+    <ul>
+      <li *ngFor="let item of complianceChecklist">
+        <fa-icon [icon]="faCheckCircle" [style.color]="item.passed ? 'green' : 'gray'"></fa-icon>
+        {{ item.item }}
+      </li>
+    </ul>
+  </div>
+
+</section>

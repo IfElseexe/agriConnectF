@@ -1,0 +1,26 @@
+<div class="modal-content">
+  <h2>User Profile</h2>
+  <div class="user-info">
+    <p><strong>Username:</strong> {{ data.username }}</p>
+    <p><strong>Email:</strong> {{ data.email }}</p>
+    <p><strong>Role:</strong> {{ data.role }}</p>
+    <p><strong>Status:</strong> {{ data.status }}</p>
+    <p><strong>KYC Status:</strong> {{ data.kycStatus }}</p>
+  </div>
+
+  <div *ngIf="data.kyc" class="kyc-section">
+    <h3>KYC Details</h3>
+    <p><strong>ID Type:</strong> {{ data.kyc.idType }}</p>
+    <p><strong>ID Number:</strong> {{ data.kyc.idNumber }}</p>
+    <p><strong>Verified On:</strong> {{ data.kyc.verifiedOn || 'N/A' }}</p>
+
+    <div class="kyc-images">
+      <img [src]="data.kyc.frontImage" alt="ID Front">
+      <img [src]="data.kyc.backImage" alt="ID Back">
+    </div>
+  </div>
+
+  <div *ngIf="!data.kyc" class="no-kyc">
+    <p><em>No KYC details available for this user.</em></p>
+  </div>
+</div>

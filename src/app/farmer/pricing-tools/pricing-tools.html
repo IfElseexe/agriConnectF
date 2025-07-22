@@ -1,0 +1,72 @@
+<section class="pricing-tools">
+
+  <!-- 1. Cost Calculator -->
+  <div class="section">
+    <h3><fa-icon [icon]="faCalculator"></fa-icon> Cost Calculator</h3>
+    <div class="calculator">
+      <input type="number" [(ngModel)]="productionCost" placeholder="Production Cost (₦)" />
+      <input type="number" [(ngModel)]="margin" placeholder="Profit Margin (%)" />
+      <button (click)="calculatePrice()">Calculate</button>
+      <div class="result" *ngIf="suggestedPrice">
+        Suggested Price: ₦{{ suggestedPrice.toFixed(2) }}
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Competitor Prices -->
+  <div class="section">
+    <h3><fa-icon [icon]="faChartLine"></fa-icon> Competitor Price Comparison</h3>
+    <table>
+      <tr>
+        <th>Source</th>
+        <th>Price (₦)</th>
+      </tr>
+      <tr *ngFor="let row of competitorPrices">
+        <td>{{ row.name }}</td>
+        <td>₦{{ row.price }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 3. Monthly Trend Chart -->
+  <div class="section chart">
+    <h3><fa-icon [icon]="faChartLine"></fa-icon> Seasonal Price Trends</h3>
+    <canvas baseChart
+            [data]="chartData"
+            [options]="chartOptions"
+            chartType="line">
+    </canvas>
+  </div>
+
+  <!-- 4. Bulk Discount -->
+  <div class="section">
+    <h3><fa-icon [icon]="faTags"></fa-icon> Bulk Discount Manager</h3>
+    <table>
+      <tr>
+        <th>Min Qty (kg)</th>
+        <th>Discount (%)</th>
+      </tr>
+      <tr *ngFor="let tier of discountTiers">
+        <td>{{ tier.quantity }}</td>
+        <td>{{ tier.discount }}%</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 5. Loyalty Pricing -->
+  <div class="section">
+    <h3><fa-icon [icon]="faUserCheck"></fa-icon> Loyalty Customer Price</h3>
+    <p>Special Rate: <strong>₦{{ loyaltyPrice }}</strong></p>
+  </div>
+
+  <!-- 6. Local Market Price Viewer -->
+  <div class="section">
+    <h3><fa-icon [icon]="faStore"></fa-icon> Local Market Prices</h3>
+    <ul>
+      <li *ngFor="let market of localMarkets">
+        {{ market.market }} — <strong>₦{{ market.price }}</strong>
+      </li>
+    </ul>
+  </div>
+
+</section>

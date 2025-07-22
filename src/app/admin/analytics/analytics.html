@@ -1,0 +1,45 @@
+<div class="analytics-header">
+  <h2><fa-icon [icon]="faArrowUp"></fa-icon> Analytics & Reports</h2>
+  <button (click)="exportCSV()">
+    <fa-icon [icon]="faDownload"></fa-icon> Export CSV
+  </button>
+</div>
+
+<div class="analytics-cards">
+  <div class="card">
+    <fa-icon [icon]="faUsers"></fa-icon>
+    <div>
+      <h4>Total Users</h4>
+      <p>{{ stats.totalUsers }}</p>
+    </div>
+  </div>
+  <div class="card">
+    <fa-icon [icon]="faBox"></fa-icon>
+    <div>
+      <h4>Products</h4>
+      <p>{{ stats.products }}</p>
+    </div>
+  </div>
+  <div class="card">
+    <fa-icon [icon]="faMoneyBill"></fa-icon>
+    <div>
+      <h4>Revenue</h4>
+      <p>₦{{ stats.revenue | number }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="charts-container">
+  <div class="chart">
+    <canvas baseChart
+      [data]="revenueChartData"
+      chartType="line">
+    </canvas>
+  </div>
+  <div class="chart">
+    <canvas baseChart
+      [data]="signupChartData"
+      chartType="bar">
+    </canvas>
+  </div>
+</div>

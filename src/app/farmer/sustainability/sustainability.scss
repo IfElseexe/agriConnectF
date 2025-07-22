@@ -1,0 +1,36 @@
+.sustainability {
+  padding: 1.5rem;
+
+  .section {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+
+    h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #2e7d32;
+    }
+
+    ul {
+      padding-left: 1rem;
+      li {
+        margin: 0.5rem 0;
+      }
+    }
+
+    .result {
+      background: #e8f5e9;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #388e3c;
+    }
+  }
+}

@@ -1,0 +1,88 @@
+<section class="transactions">
+
+  <!-- Summary Cards -->
+  <div class="summary-cards">
+    <div class="card earnings">
+      <fa-icon [icon]="faEarnings"></fa-icon>
+      <h4>₦{{ totalEarnings }}</h4>
+      <p>Total Earnings</p>
+    </div>
+    <div class="card wallet">
+      <fa-icon [icon]="faWallet"></fa-icon>
+      <h4>₦{{ pendingWithdrawals }}</h4>
+      <p>Pending Withdrawals</p>
+    </div>
+    <div class="card completed">
+      <fa-icon [icon]="faExchange"></fa-icon>
+      <h4>{{ completedCount }}</h4>
+      <p>Completed</p>
+    </div>
+    <div class="card failed">
+      <fa-icon [icon]="faFailed"></fa-icon>
+      <h4>{{ failedCount }}</h4>
+      <p>Failed</p>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <input type="text" [(ngModel)]="search" placeholder="Search transaction..." />
+    <select [(ngModel)]="filterType">
+      <option value="">All Types</option>
+      <option value="Credit">Credit</option>
+      <option value="Debit">Debit</option>
+    </select>
+    <select [(ngModel)]="filterStatus">
+      <option value="">All Status</option>
+      <option value="Completed">Completed</option>
+      <option value="Pending">Pending</option>
+      <option value="Failed">Failed</option>
+    </select>
+    <button (click)="openWithdrawModal()">➕ Request Withdrawal</button>
+  </div>
+
+  <!-- Transactions Table -->
+  <div class="transaction-table">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let txn of filteredTransactions">
+          <td>{{ txn.id }}</td>
+          <td>
+            <fa-icon [icon]="txn.type === 'Credit' ? faArrowDown : faArrowUp"></fa-icon>
+            {{ txn.type }}
+          </td>
+          <td>₦{{ txn.amount }}</td>
+          <td><span [ngClass]="txn.status.toLowerCase()">{{ txn.status }}</span></td>
+          <td>{{ txn.date }}</td>
+          <td>{{ txn.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Withdraw Modal -->
+  <div class="modal" *ngIf="showWithdrawModal">
+    <div class="modal-box">
+      <h3>Withdraw Funds</h3>
+      <input type="number" placeholder="Enter Amount (₦)" />
+      <input type="text" placeholder="Bank Name" />
+      <input type="text" placeholder="Account Number" />
+      <input type="text" placeholder="Account Name" />
+      <div class="actions">
+        <button (click)="requestWithdrawal()">Submit</button>
+        <button class="cancel" (click)="closeWithdrawModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+</section>

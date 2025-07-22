@@ -1,0 +1,58 @@
+<section class="buyer-dashboard">
+  <!-- Summary Cards -->
+  <div class="summary-cards">
+    <div class="card">
+      <fa-icon [icon]="faShoppingBag"></fa-icon>
+      <div>
+        <h3>{{ totalOrders }}</h3>
+        <p>Total Orders</p>
+      </div>
+    </div>
+    <div class="card">
+      <fa-icon [icon]="faTruck"></fa-icon>
+      <div>
+        <h3>{{ activeOrders }}</h3>
+        <p>Active Orders</p>
+      </div>
+    </div>
+    <div class="card">
+      <fa-icon [icon]="faWallet"></fa-icon>
+      <div>
+        <h3>₦{{ totalSpend | number }}</h3>
+        <p>Total Spend</p>
+      </div>
+    </div>
+    <div class="card">
+      <fa-icon [icon]="faComments"></fa-icon>
+      <div>
+        <h3>{{ messageCount }}</h3>
+        <p>Messages</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Links -->
+  <div class="quick-actions">
+    <button (click)="goToBrowse()">
+      <fa-icon [icon]="faSearch"></fa-icon> Browse Products
+    </button>
+    <button (click)="goToOrders()">
+      <fa-icon [icon]="faList"></fa-icon> My Orders
+    </button>
+    <button (click)="goToTransactions()">
+      <fa-icon [icon]="faCreditCard"></fa-icon> Transactions
+    </button>
+    <button (click)="goToSupport()">
+      <fa-icon [icon]="faLifeRing"></fa-icon> Support
+    </button>
+  </div>
+
+  <!-- Chart Section -->
+  <div class="chart-container">
+    <canvas baseChart
+      [data]="chartData"
+      [options]="chartOptions"
+      [type]="'line'">
+    </canvas>
+  </div>
+</section>

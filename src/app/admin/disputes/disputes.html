@@ -1,0 +1,55 @@
+<div class="disputes-page">
+  <h2><fa-icon [icon]="faAlert"></fa-icon> Dispute Management</h2>
+
+  <div class="filters">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="filterDisputes()"
+      placeholder="Search by Order ID, Buyer or Farmer"
+    />
+    <select [(ngModel)]="selectedStatus" (change)="filterDisputes()">
+      <option value="All">All Statuses</option>
+      <option value="Open">Open</option>
+      <option value="Escalated">Escalated</option>
+      <option value="Resolved">Resolved</option>
+    </select>
+  </div>
+
+  <table class="dispute-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Order</th>
+        <th>Buyer</th>
+        <th>Farmer</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of filteredDisputes">
+        <td>{{ d.id }}</td>
+        <td>{{ d.orderId }}</td>
+        <td>{{ d.buyer }}</td>
+        <td>{{ d.farmer }}</td>
+        <td>{{ d.reason }}</td>
+        <td>
+          <span [class]="d.status.toLowerCase()">{{ d.status }}</span>
+        </td>
+        <td>{{ d.createdAt | date: 'short' }}</td>
+        <td>
+          <button (click)="viewDetails(d)"><fa-icon [icon]="faView"></fa-icon></button>
+          <button (click)="resolveDispute(d)" [disabled]="d.status === 'Resolved'">
+            <fa-icon [icon]="faResolve"></fa-icon>
+          </button>
+          <button (click)="rejectDispute(d)" [disabled]="d.status === 'Escalated' || d.status === 'Resolved'">
+            <fa-icon [icon]="faReject"></fa-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,61 @@
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+  background-color: #ffffff;
+  color: #121212;
+  transition: none;
+}
+
+/* === Global layout containers === */
+body, .layout-container, .content, .router-outlet, app-admin-layout {
+  background-color: inherit;
+  color: inherit;
+}
+
+/* === Light Theme (Default) === */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #121212;
+  --accent-color: #007bff;
+  --accent-hover: #0056b3;
+  --sidebar-bg: #f4f4f4;
+  --sidebar-text: #333333;
+  --sidebar-active: #dce9ff;
+  --sidebar-hover: #e0e0e0;
+}
+
+/* === Dark Mode Theme === */
+body.dark-mode {
+  --bg-color: #1e1e2f; /* Dark ash */
+  --text-color: #f5f5f5;
+  --accent-color: #4eaaff;
+  --accent-hover: #3583cc;
+  --sidebar-bg: #2b2b3d;
+  --sidebar-text: #ffffff;
+  --sidebar-active: #375a7f;
+  --sidebar-hover: #3e3e50;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* === Scrollbar Styling === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(150, 150, 150, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(150, 150, 150, 0.5);
+}

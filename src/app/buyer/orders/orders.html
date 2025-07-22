@@ -1,0 +1,33 @@
+<div class="orders-wrapper">
+  <h2>Your Orders</h2>
+
+  <div *ngIf="orders.length === 0" class="empty-state">
+    <p>You have no orders yet.</p>
+  </div>
+
+  <div class="order-card" *ngFor="let order of orders">
+    <img [src]="order.image" alt="product image" />
+
+    <div class="details">
+      <h3>{{ order.productName }}</h3>
+      <p>Quantity: {{ order.quantity }}</p>
+      <p>Total: ₦{{ order.price }}</p>
+      <p>Date: {{ order.date }}</p>
+    </div>
+
+    <div class="status">
+      <fa-icon [icon]="getStatusIcon(order.status)"></fa-icon>
+      <span [class]="order.status.toLowerCase()">{{ order.status }}</span>
+      <p class="track">{{ order.tracking }}</p>
+    </div>
+
+    <div class="actions" *ngIf="order.status === 'Pending'">
+      <button class="cancel" (click)="cancelOrder(order.id)">
+        <fa-icon [icon]="['fas', 'times']"></fa-icon> Cancel
+      </button>
+      <button class="support" (click)="contactSupport(order)">
+        <fa-icon [icon]="['fas', 'phone']"></fa-icon> Contact
+      </button>
+    </div>
+  </div>
+</div>

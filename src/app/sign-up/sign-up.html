@@ -1,0 +1,49 @@
+<div class="signup-container">
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="signup-form">
+    <h2>Create Account</h2>
+
+    <div class="role-toggle">
+      <button type="button" [class.active]="userType === 'farmer'" (click)="setUserType('farmer')">
+        <fa-icon [icon]="faLeaf"></fa-icon> Farmer
+      </button>
+      <button type="button" [class.active]="userType === 'buyer'" (click)="setUserType('buyer')">
+        <fa-icon [icon]="faShoppingBasket"></fa-icon> Buyer
+      </button>
+    </div>
+
+    <div class="input-field">
+      <fa-icon [icon]="faUser"></fa-icon>
+      <input type="text" formControlName="username" placeholder="Username" />
+    </div>
+
+    <div class="input-field">
+      <fa-icon [icon]="faUser"></fa-icon>
+      <input type="email" formControlName="email" placeholder="Email" />
+    </div>
+
+    <div class="input-field">
+      <fa-icon [icon]="faLock"></fa-icon>
+      <input type="password" formControlName="password" placeholder="Password" />
+    </div>
+
+    <div class="input-field">
+      <fa-icon [icon]="faLock"></fa-icon>
+      <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" />
+    </div>
+
+    <button type="submit" class="submit-btn" [disabled]="signUpForm.invalid">Sign Up</button>
+
+    <div class="alt-login">
+      <p>Or sign up with</p>
+      <div class="social-icons">
+        <a href="#"><fa-icon [icon]="faGoogle"></fa-icon></a>
+        <a href="#"><fa-icon [icon]="faFacebookF"></fa-icon></a>
+        <a href="#"><fa-icon [icon]="faInstagram"></fa-icon></a>
+      </div>
+    </div>
+
+    <div class="login-link">
+      Already have an account? <a routerLink="/sign-in">Log in</a>
+    </div>
+  </form>
+</div>

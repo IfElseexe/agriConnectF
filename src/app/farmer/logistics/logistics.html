@@ -1,0 +1,47 @@
+<div class="logistics-dashboard">
+  <!-- Summary Cards -->
+  <div class="summary-cards">
+    <div class="card"><fa-icon [icon]="faRoute"></fa-icon><div><h3>{{ activeDeliveries }}</h3><p>Active Deliveries</p></div></div>
+    <div class="card"><fa-icon [icon]="faUserTie"></fa-icon><div><h3>{{ availableDrivers }}</h3><p>Available Drivers</p></div></div>
+    <div class="card"><fa-icon [icon]="faMap"></fa-icon><div><h3>{{ scheduledPickups }}</h3><p>Scheduled Pickups</p></div></div>
+    <div class="card"><fa-icon [icon]="faTruck"></fa-icon><div><h3>{{ vehiclesInUse }}</h3><p>Vehicles in Use</p></div></div>
+  </div>
+
+  <!-- Driver Table -->
+  <div class="section">
+    <h2>Drivers</h2>
+    <table>
+      <thead>
+        <tr><th>Name</th><th>Phone</th><th>Status</th><th>Last Delivery</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let driver of drivers">
+          <td>{{ driver.name }}</td>
+          <td>{{ driver.phone }}</td>
+          <td><span [class.available]="driver.status === 'Available'" [class.busy]="driver.status === 'On Delivery'">{{ driver.status }}</span></td>
+          <td>{{ driver.lastDelivery }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Vehicle Table -->
+  <div class="section">
+    <h2>Vehicles</h2>
+    <table>
+      <thead>
+        <tr><th>Type</th><th>Capacity</th><th>Plate No</th><th>Status</th><th>Driver</th><th>Maintenance</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let v of vehicles">
+          <td>{{ v.type }}</td>
+          <td>{{ v.capacity }}</td>
+          <td>{{ v.plate }}</td>
+          <td>{{ v.status }}</td>
+          <td>{{ v.driver }}</td>
+          <td><fa-icon *ngIf="v.maintenance" [icon]="faWrench" class="warn"></fa-icon></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

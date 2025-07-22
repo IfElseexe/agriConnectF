@@ -1,0 +1,77 @@
+<div class="form-slideout">
+  <div class="form-header">
+    <h2>{{ isEdit ? 'Edit Product' : 'Add New Product' }}</h2>
+    <button class="close-btn" (click)="close.emit()">✖</button>
+  </div>
+
+  <form (ngSubmit)="saveProduct()" enctype="multipart/form-data">
+    <!-- Product Name -->
+    <label>Product Name</label>
+    <input [(ngModel)]="product.name" name="name" required placeholder="e.g. Organic Tomatoes" />
+
+    <!-- Category -->
+    <label>Category</label>
+    <select [(ngModel)]="product.category" name="category" required>
+      <option value="" disabled>Select a category</option>
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
+
+    <!-- Variety -->
+    <label>Variety</label>
+    <input [(ngModel)]="product.variety" name="variety" placeholder="e.g. Cherry Tomatoes" />
+
+    <!-- Description -->
+    <label>Description</label>
+    <textarea [(ngModel)]="product.description" name="description" rows="3" placeholder="Enter detailed product description"></textarea>
+
+    <!-- Price per Unit -->
+    <label>Price per Unit (₦)</label>
+    <input type="number" [(ngModel)]="product.pricePerUnit" name="pricePerUnit" placeholder="e.g. 2500" />
+
+    <!-- Location (State in Nigeria) -->
+    <label>Location</label>
+    <select [(ngModel)]="product.location" name="location">
+      <option value="" disabled>Select a state</option>
+      <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+    </select>
+
+    <!-- Harvest Date Range -->
+    <label>Harvest Date Range</label>
+    <div class="date-range">
+      <input type="date" [(ngModel)]="product.harvestStart" name="harvestStart" />
+      <input type="date" [(ngModel)]="product.harvestEnd" name="harvestEnd" />
+    </div>
+
+    <!-- Expected Quantity -->
+    <label>Expected Quantity</label>
+    <input [(ngModel)]="product.quantity" name="quantity" type="number" placeholder="e.g. 1000" />
+
+    <!-- Unit -->
+    <label>Unit</label>
+    <select [(ngModel)]="product.unit" name="unit" required>
+      <option value="" disabled>Select a unit</option>
+      <option *ngFor="let unit of units" [value]="unit">{{ unit }}</option>
+    </select>
+
+    <!-- Storage Requirements -->
+    <label>Storage Requirements</label>
+    <input [(ngModel)]="product.storage" name="storage" placeholder="e.g. Cold storage, dry space..." />
+
+    <!-- Certifications -->
+    <label>Certifications</label>
+    <select [(ngModel)]="product.certifications" name="certifications">
+      <option value="" disabled>Select certification</option>
+      <option *ngFor="let cert of certifications" [value]="cert">{{ cert }}</option>
+    </select>
+
+    <!-- Product Image -->
+    <label>Product Image</label>
+    <input type="file" (change)="onFileChange($event)" />
+    <img *ngIf="imagePreviewUrl" [src]="imagePreviewUrl" alt="Image Preview" class="image-preview" />
+
+    <!-- Submit Button -->
+    <button type="submit" class="submit-btn">
+      {{ isEdit ? 'Update Product' : 'Save Product' }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,68 @@
+<div class="product-header">
+  <h2><fa-icon [icon]="faBox"></fa-icon> Produce Management</h2>
+
+  <div class="toolbar">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="filterProducts()"
+      placeholder="Search product or farmer"
+    />
+
+    <select [(ngModel)]="selectedCategory" (change)="filterProducts()">
+      <option value="All">All Categories</option>
+      <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
+    </select>
+
+    <select [(ngModel)]="selectedStatus" (change)="filterProducts()">
+      <option value="All">All Statuses</option>
+      <option value="Pending">Pending</option>
+      <option value="Approved">Approved</option>
+      <option value="Flagged">Flagged</option>
+    </select>
+  </div>
+</div>
+
+<div class="product-grid">
+  <div class="product-card" *ngFor="let p of filtered">
+    <img [src]="p.imageUrl || 'https://via.placeholder.com/200'" alt="{{ p.name }}" />
+    
+    <div class="info">
+      <h3>{{ p.name }}</h3>
+      <p><fa-icon [icon]="faTags"></fa-icon> <strong>Category:</strong> {{ p.category }}</p>
+      <p><fa-icon [icon]="faUser"></fa-icon> <strong>Farmer:</strong> {{ p.farmerName }}</p>
+      <p><strong>Qty:</strong> {{ p.quantity }} {{ p.unit }}</p>
+      <p><strong>₦</strong>{{ p.price | number }}</p>
+      <p><fa-icon [icon]="faCalendarAlt"></fa-icon> <strong>Created:</strong> {{ p.createdAt | date: 'mediumDate' }}</p>
+
+      <p class="status"
+         [class.pending]="p.status === 'Pending'"
+         [class.approved]="p.status === 'Approved'"
+         [class.flagged]="p.status === 'Flagged'">
+        {{ p.status }}
+      </p>
+    </div>
+
+    <div class="actions">
+      <button (click)="view(p)" title="View Product">
+        <fa-icon [icon]="faEye"></fa-icon>
+      </button>
+      <button (click)="approve(p)" *ngIf="p.status !== 'Approved'" title="Approve">
+        <fa-icon [icon]="faCheck"></fa-icon>
+      </button>
+      <button (click)="flag(p)" *ngIf="p.status !== 'Flagged'" title="Flag">
+        <fa-icon [icon]="faFlag"></fa-icon>
+      </button>
+      <button (click)="delete(p._id)" title="Delete">
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Product View Modal -->
+<app-product-view-modal
+  *ngIf="viewingProduct"
+  [product]="viewingProduct"
+  (close)="closeModal()">
+</app-product-view-modal>

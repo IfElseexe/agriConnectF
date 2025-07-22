@@ -1,0 +1,42 @@
+<div class="announcements">
+  <h2><fa-icon [icon]="faBullhorn"></fa-icon> Announcements</h2>
+
+  <div class="card">
+    <h3>Create Broadcast</h3>
+
+    <label>Audience:</label>
+    <select [(ngModel)]="audience">
+      <option value="all">All Users</option>
+      <option value="farmers">Only Farmers</option>
+      <option value="buyers">Only Buyers</option>
+    </select>
+
+    <label>Delivery Method:</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" [(ngModel)]="delivery" [value]="'in-app'" /> In-App</label>
+      <label><input type="checkbox" [(ngModel)]="delivery" [value]="'email'" /> Email</label>
+      <label><input type="checkbox" [(ngModel)]="delivery" [value]="'sms'" /> SMS</label>
+    </div>
+
+    <label>Message:</label>
+    <textarea [(ngModel)]="message" rows="4" placeholder="Type your announcement..."></textarea>
+
+    <label>Use Template:</label>
+    <div class="template-list">
+      <button *ngFor="let t of templates" (click)="useTemplate(t)">{{ t }}</button>
+    </div>
+
+    <button class="send-btn" (click)="send()"><fa-icon [icon]="faPaperPlane"></fa-icon> Send Announcement</button>
+  </div>
+
+  <div class="card">
+    <h3><fa-icon [icon]="faClock"></fa-icon> Sent Announcements</h3>
+    <div *ngIf="sentMessages.length === 0">No announcements sent yet.</div>
+    <ul class="history">
+      <li *ngFor="let msg of sentMessages">
+        <strong>{{ msg.content }}</strong><br />
+        <small>To: {{ msg.audience }} | Via: {{ msg.delivery }} | Sent: {{ msg.timestamp }}</small>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <!-- Toggle Button -->
+  <div class="toggle-btn" (click)="toggleSidebar()" [class.collapsed]="isCollapsed">
+    <fa-icon [icon]="faToggle" [style.transform]="isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)'"></fa-icon>
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <ul class="nav-links">
+    <!-- Main Links -->
+    <li routerLinkActive="active">
+      <a routerLink="/farmer">
+        <fa-icon [icon]="faHouse"></fa-icon>
+        <span *ngIf="!isCollapsed">Dashboard</span>
+      </a>
+    </li>
+
+    <li routerLinkActive="active">
+      <a routerLink="/farmer/products">
+        <fa-icon [icon]="faBoxOpen"></fa-icon>
+        <span *ngIf="!isCollapsed">Products</span>
+      </a>
+    </li>
+
+    <!-- Farm Management Dropdown -->
+    <li class="dropdown">
+      <a (click)="toggleFarmManagementDropdown()">
+        <fa-icon [icon]="faSeedling"></fa-icon>
+        <span *ngIf="!isCollapsed">Farm Management</span>
+        <fa-icon *ngIf="!isCollapsed" [icon]="faAngleDown" class="arrow" [class.open]="isFarmDropdownOpen"></fa-icon>
+      </a>
+      <ul class="sub-menu" *ngIf="isFarmDropdownOpen && !isCollapsed">
+        <li routerLinkActive="active">
+          <a routerLink="/farmer/inventory">
+            <fa-icon [icon]="faBoxesStacked"></fa-icon>Inventory
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/farmer/pricing-tools">
+            <fa-icon [icon]="faDollarSign"></fa-icon>Pricing
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/farmer/harvest-planning">
+            <fa-icon [icon]="faCalendarCheck"></fa-icon>Harvest
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/farmer/quality-control">
+            <fa-icon [icon]="faClipboardCheck"></fa-icon>Quality
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/farmer/sustainability">
+            <fa-icon [icon]="faLeaf"></fa-icon>Sustainability
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Other Links -->
+    <li routerLinkActive="active">
+      <a routerLink="/farmer/orders">
+        <fa-icon [icon]="faReceipt"></fa-icon>
+        <span *ngIf="!isCollapsed">Orders</span>
+      </a>
+    </li>
+
+    <li routerLinkActive="active">
+      <a routerLink="/farmer/transactions">
+        <fa-icon [icon]="faCreditCard"></fa-icon>
+        <span *ngIf="!isCollapsed">Transactions</span>
+      </a>
+    </li>
+
+    <li routerLinkActive="active">
+      <a routerLink="/farmer/messages">
+        <fa-icon [icon]="faComments"></fa-icon>
+        <span *ngIf="!isCollapsed">Messages</span>
+      </a>
+    </li>
+
+    <li routerLinkActive="active">
+      <a routerLink="/farmer/logistics">
+        <fa-icon [icon]="faTruck"></fa-icon>
+        <span *ngIf="!isCollapsed">Logistics</span>
+      </a>
+    </li>
+
+    <li routerLinkActive="active">
+      <a routerLink="/farmer/settings">
+        <fa-icon [icon]="faCog"></fa-icon>
+        <span *ngIf="!isCollapsed">Settings</span>
+      </a>
+    </li>
+
+  
+    <li>
+      <a (click)="logout()">
+        <fa-icon [icon]="faLogout"></fa-icon>
+        <span *ngIf="!isCollapsed">Logout</span>
+      </a>
+    </li>
+  </ul>
+</div>

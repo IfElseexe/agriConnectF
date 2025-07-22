@@ -1,0 +1,76 @@
+<section class="orders">
+
+  <!-- Summary Cards -->
+  <div class="summary-cards">
+    <div class="card pending"><fa-icon [icon]="faPending"></fa-icon><h4>{{ pendingOrders }}</h4><p>Pending</p></div>
+    <div class="card completed"><fa-icon [icon]="faCompleted"></fa-icon><h4>{{ completedOrders }}</h4><p>Completed</p></div>
+    <div class="card cancelled"><fa-icon [icon]="faCancelled"></fa-icon><h4>{{ cancelledOrders }}</h4><p>Cancelled</p></div>
+    <div class="card total"><fa-icon [icon]="faShipped"></fa-icon><h4>{{ totalOrders }}</h4><p>Total Orders</p></div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search orders..." />
+    <select [(ngModel)]="statusFilter">
+      <option value="">All Status</option>
+      <option value="Pending">Pending</option>
+      <option value="Completed">Completed</option>
+      <option value="Cancelled">Cancelled</option>
+    </select>
+  </div>
+
+  <!-- Orders Table -->
+  <div class="orders-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Product</th>
+          <th>Buyer</th>
+          <th>Qty</th>
+          <th>Price (₦)</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of filteredOrders">
+          <td>{{ order.id }}</td>
+          <td>{{ order.product }}</td>
+          <td>{{ order.buyer }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.price }}</td>
+          <td>{{ order.date }}</td>
+          <td>
+            <span class="status" [ngClass]="order.status.toLowerCase()">{{ order.status }}</span>
+          </td>
+          <td>
+            <button (click)="openOrder(order)"><fa-icon [icon]="faView"></fa-icon></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Order Modal -->
+  <div class="order-modal" *ngIf="selectedOrder">
+    <div class="modal-content">
+      <h3>Order Details — {{ selectedOrder.id }}</h3>
+      <p><strong>Product:</strong> {{ selectedOrder.product }}</p>
+      <p><strong>Buyer:</strong> {{ selectedOrder.buyer }}</p>
+      <p><strong>Quantity:</strong> {{ selectedOrder.quantity }}</p>
+      <p><strong>Price:</strong> ₦{{ selectedOrder.price }}</p>
+      <p><strong>Date:</strong> {{ selectedOrder.date }}</p>
+      <p><strong>Status:</strong> {{ selectedOrder.status }}</p>
+
+      <h4>Update Status:</h4>
+      <button (click)="updateStatus('Pending')">Pending</button>
+      <button (click)="updateStatus('Completed')">Completed</button>
+      <button (click)="updateStatus('Cancelled')">Cancelled</button>
+
+      <button class="close" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+
+</section>

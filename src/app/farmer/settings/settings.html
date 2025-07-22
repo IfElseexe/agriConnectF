@@ -1,0 +1,69 @@
+<div class="settings-container">
+  <!-- Profile Info -->
+  <div class="card">
+    <h3><fa-icon [icon]="faUser"></fa-icon> Profile Info</h3>
+    <div class="profile-info">
+      <div class="profile-image">
+        <img [src]="profileImage" alt="Profile Picture">
+        <input type="file" (change)="onImageSelected($event)">
+      </div>
+      <div class="info-fields">
+        <label>Name
+          <input type="text" [(ngModel)]="user.name">
+        </label>
+        <label>Email
+          <input type="email" [(ngModel)]="user.email">
+        </label>
+        <label>Phone
+          <input type="text" [(ngModel)]="user.phone">
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Security Settings -->
+  <div class="card">
+    <h3><fa-icon [icon]="faLock"></fa-icon> Security Settings</h3>
+    <label>New Password
+      <input type="password" [(ngModel)]="newPassword">
+    </label>
+    <label>Confirm Password
+      <input type="password" [(ngModel)]="confirmPassword">
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="user.twoFactor"> Enable Two-Factor Authentication
+    </label>
+  </div>
+
+  <!-- Preferences -->
+  <div class="card">
+    <h3><fa-icon [icon]="faCog"></fa-icon> Preferences</h3>
+    <label>
+      <input type="checkbox" [(ngModel)]="user.darkMode" (change)="toggleDarkMode()"> Dark Mode
+    </label>
+    <label>Language
+      <select [(ngModel)]="user.language">
+        <option>English</option>
+        <option>Hausa</option>
+        <option>Yoruba</option>
+        <option>Igbo</option>
+      </select>
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="user.emailNotif"> Email Notifications
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="user.smsNotif"> SMS Notifications
+    </label>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="card actions">
+    <button class="save" (click)="saveSettings()">
+      <fa-icon [icon]="faSave"></fa-icon> Save Changes
+    </button>
+    <button class="danger" (click)="confirmDeactivate()">
+      <fa-icon [icon]="faTrash"></fa-icon> Deactivate Account
+    </button>
+  </div>
+</div>

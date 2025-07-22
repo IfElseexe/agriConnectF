@@ -1,0 +1,53 @@
+<div class="cart-wrapper">
+  <h2>Your Cart</h2>
+
+  <div class="cart-empty" *ngIf="cartItems.length === 0">
+    <p>Your cart is empty.</p>
+  </div>
+
+  <div class="cart-list" *ngIf="cartItems.length > 0">
+    <div class="cart-item" *ngFor="let item of cartItems">
+      <img [src]="item.image" alt="Product image" />
+
+      <div class="details">
+        <h3>{{ item.name }}</h3>
+        <p>₦{{ item.price }} each</p>
+        <div class="quantity-control">
+          <button (click)="decreaseQuantity(item)">
+            <fa-icon [icon]="['fas', 'minus']"></fa-icon>
+          </button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)">
+            <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+          </button>
+        </div>
+        <p>Total: ₦{{ item.quantity * item.price }}</p>
+      </div>
+
+      <button class="remove-btn" (click)="removeItem(item.id)">
+        <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+      </button>
+    </div>
+
+    <div class="cart-summary">
+      <p><strong>Subtotal:</strong> ₦{{ subtotal }}</p>
+      <button class="checkout-btn" (click)="openCheckout()">
+        Proceed to Checkout
+        <fa-icon [icon]="['fas', 'arrow-right']"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="checkout-modal" *ngIf="showCheckout">
+    <div class="checkout-content">
+      <button class="close-checkout" (click)="closeCheckout()">
+        <fa-icon [icon]="['fas', 'times']"></fa-icon>
+      </button>
+      <h3>Checkout</h3>
+      <p>Total Amount: ₦{{ subtotal }}</p>
+      <p>This is a placeholder for payment or delivery address.</p>
+      <button class="complete-btn" (click)="completeCheckout()">Complete Order</button>
+    </div>
+  </div>
+</div>

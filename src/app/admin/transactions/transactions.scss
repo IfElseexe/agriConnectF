@@ -1,0 +1,129 @@
+.tx-header {
+  margin-bottom: 20px;
+
+  .breadcrumbs {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+
+  h2 {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+
+    input,
+    select {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 16px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      &:hover {
+        background-color: #388e3c;
+      }
+    }
+  }
+}
+
+.tx-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f5f5f5;
+    font-size: 12px;
+    color: #444;
+    text-transform: uppercase;
+  }
+
+  .success {
+    color: #4caf50;
+  }
+  .pending {
+    color: #ff9800;
+  }
+  .failed {
+    color: #f44336;
+  }
+}
+/* === Dark Mode Styles for Transactions === */
+:host-context(body.dark-mode) {
+  .tx-header {
+    .breadcrumbs {
+      color: #bbb;
+    }
+
+    h2 {
+      color: #f5f5f5;
+    }
+
+    .toolbar {
+      input,
+      select {
+        background-color: #383850;
+        color: #f5f5f5;
+        border: 1px solid #555;
+      }
+
+      button {
+        background-color: #388e3c;
+
+        &:hover {
+          background-color: #2e7031;
+        }
+      }
+    }
+  }
+
+  .tx-table {
+    th {
+      background-color: #2e2e42;
+      color: #f5f5f5;
+    }
+
+    td {
+      color: #e0e0e0;
+      border-bottom: 1px solid #444;
+    }
+
+    .success {
+      color: #81c784;
+    }
+
+    .pending {
+      color: #ffb74d;
+    }
+
+    .failed {
+      color: #ef5350;
+    }
+  }
+}
