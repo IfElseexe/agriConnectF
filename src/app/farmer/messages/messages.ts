@@ -1,80 +1,55 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Chat } from '../../models/chat.model';
+import { Message } from '../../models/message.model';
+import { ChatService } from './chat.service';
+import { AuthService } from '../../auth/auth';
+import { CommonModule } from '@angular/common'; 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FilterPipe } from '../../pipes/filter-pipe';
 import { FormsModule } from '@angular/forms';
-import {
-  faPaperPlane,
-  faPaperclip,
-  faSmile,
-  faTrash,
-  faPhone,
-  faChevronLeft
-} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.html',
   styleUrls: ['./messages.scss'],
-  standalone: true,
-  imports: [CommonModule, FontAwesomeModule, FormsModule, FilterPipe]
+  imports: [CommonModule, FontAwesomeModule, FormsModule],
+  standalone: true
 })
-export class Messages {
-  faPaperPlane = faPaperPlane;
-  faPaperclip = faPaperclip;
-  faSmile = faSmile;
-  faTrash = faTrash;
-  faPhone = faPhone;
-  faChevronLeft = faChevronLeft;
+export class Messages implements OnInit {
+  chats: Chat[] = [];
+  selectedChat: Chat | null = null;
+  messages: Message[] = [];
+  newMessage = '';
+  currentUserId = '';
 
-  searchTerm = '';
-  selectedChat: any = null;
-  messageText = '';
+  constructor(private chatService: ChatService, private authService: AuthService) {}
 
-  chatList = [
-    {
-      id: 1,
-      name: 'Admin Support',
-      lastMessage: 'Your payment has been received.',
-      time: '10:15 AM',
-      unread: 1,
-      online: true,
-      messages: [
-        { sender: 'admin', text: 'Hello, welcome to AgriConnect!', time: '9:00 AM' },
-        { sender: 'me', text: 'Thanks!', time: '9:02 AM' },
-        { sender: 'admin', text: 'Your payment has been received.', time: '10:15 AM' }
-      ]
-    },
-    {
-      id: 2,
-      name: 'Buyer - Musa',
-      lastMessage: 'When will you ship the maize?',
-      time: 'Yesterday',
-      unread: 0,
-      online: false,
-      messages: [
-        { sender: 'buyer', text: 'When will you ship the maize?', time: 'Yesterday' },
-        { sender: 'me', text: 'Tomorrow morning.', time: 'Yesterday' }
-      ]
-    }
-  ];
+  ngOnInit(): void {
+    const user = this.authService.getUser(); // assumes a method like this exists
+    this.currentUserId = user._id;
 
-  selectChat(chat: any) {
+    this.chatService.getChats().subscribe(chats => {
+      this.chats = chats;
+    });
+  }
+
+  selectChat(chat: Chat): void {
     this.selectedChat = chat;
+    this.chatService.getMessages(chat._id).subscribe(messages => {
+      this.messages = messages;
+    });
   }
 
-  sendMessage() {
-    if (this.messageText.trim() && this.selectedChat) {
-      this.selectedChat.messages.push({
-        sender: 'me',
-        text: this.messageText,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      });
-      this.messageText = '';
-    }
+  sendMessage(): void {
+    if (!this.newMessage.trim() || !this.selectedChat) return;
+
+    this.chatService.sendMessage(this.selectedChat._id, this.newMessage.trim()).subscribe(message => {
+      this.messages.push(message);
+      this.newMessage = '';
+    });
   }
 
-  backToList() {
-    this.selectedChat = null;
+  getChatPartnerName(chat: Chat): string {
+    const partner = chat.participants.find(p => p._id !== this.currentUserId);
+    return partner?.name || 'User';
   }
 }

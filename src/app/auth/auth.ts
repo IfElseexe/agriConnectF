@@ -60,4 +60,9 @@ export class AuthService {
   getToken(): string | null {
     return this.isBrowser ? localStorage.getItem('token') : null;
   }
+   getUser(): any {
+    if (!this.isBrowser) return null;
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
+  }
 }

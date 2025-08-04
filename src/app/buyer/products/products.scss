@@ -1,218 +1,122 @@
-.browse-wrapper {
-  padding: 1rem;
-  background: #f7f9fc;
-  min-height: 100vh;
+.products-container {
+  padding: 2rem;
 
-  .hero-section {
-    margin-bottom: 2rem;
-
-    .search-container {
-      display: flex;
-      gap: 0.5rem;
-
-      input {
-        flex: 1;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        font-size: 1rem;
-      }
-
-      button {
-        background: #0055aa;
-        color: white;
-        border: none;
-        padding: 0.5rem 0.8rem;
-        border-radius: 8px;
-        cursor: pointer;
-
-        &:hover {
-          background: #003d80;
-        }
-      }
-    }
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1rem;
-
-      select,
-      input[type='range'] {
-        padding: 0.5rem;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        font-size: 0.95rem;
-      }
-
-      label {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.95rem;
-      }
-    }
-
-    .banners {
-      margin-top: 1rem;
-      display: flex;
-      gap: 1rem;
-      overflow-x: auto;
-
-      .banner {
-        background: #e0f0ff;
-        padding: 1rem;
-        border-radius: 8px;
-        font-weight: bold;
-        min-width: 200px;
-        white-space: nowrap;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      }
-    }
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #333;
   }
 
-  .product-grid {
+  .no-products {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+  }
+
+  .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
 
-    .product-card {
-      background: white;
-      padding: 1rem;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  .product-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    background-color: #fff;
+    transition: box-shadow 0.3s;
+
+    img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+    }
+
+    p {
+      margin: 0.2rem 0;
+      color: #555;
+    }
+
+    .unit {
+      font-style: italic;
+      color: #888;
+    }
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       cursor: pointer;
-      transition: 0.3s;
-
-      &:hover {
-        transform: scale(1.02);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
-
-      .main-image {
-        width: 100%;
-        height: 160px;
-        object-fit: cover;
-        border-radius: 10px;
-        margin-bottom: 0.5rem;
-        background: #eee;
-      }
-
-      h3 {
-        font-size: 1rem;
-        margin: 0.3rem 0;
-      }
-
-      .price {
-        font-weight: bold;
-        color: #28a745;
-        font-size: 0.95rem;
-      }
-
-      .location {
-        font-size: 0.9rem;
-        color: #666;
-      }
-
-      .badges {
-        margin-top: 0.5rem;
-        font-size: 0.85rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-
-        span {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.3rem;
-          color: #0055aa;
-
-          fa-icon {
-            color: #28a745;
-          }
-        }
-      }
     }
   }
 
-  .modal {
+  .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0,0,0,0.6);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 1000;
 
     .modal-content {
-      background: white;
+      background: #fff;
       padding: 2rem;
-      border-radius: 12px;
+      border-radius: 10px;
       width: 90%;
-      max-width: 600px;
+      max-width: 500px;
       position: relative;
-      max-height: 90vh;
-      overflow-y: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+      .modal-img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
 
       .close-btn {
         position: absolute;
-        top: 10px;
-        right: 10px;
-        background: none;
+        top: 1rem;
+        right: 1rem;
+        background: transparent;
         border: none;
         font-size: 1.2rem;
         cursor: pointer;
-        color: #333;
+        color: #999;
       }
 
-      .carousel {
+      .chat-btn {
         display: flex;
+        align-items: center;
         gap: 0.5rem;
-        overflow-x: auto;
-        margin-bottom: 1rem;
-
-        img {
-          height: 120px;
-          border-radius: 8px;
-          flex-shrink: 0;
-        }
-      }
-
-      p {
-        margin: 0.5rem 0;
-        font-size: 0.95rem;
-        color: #333;
-
-        strong {
-          font-weight: 600;
-        }
-      }
-
-      .actions {
+        background-color: #009688;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
         margin-top: 1rem;
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
+        cursor: pointer;
+        font-weight: bold;
 
-        button {
-          background: #f1f1f1;
-          border: none;
-          padding: 0.5rem 0.8rem;
-          border-radius: 8px;
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-          cursor: pointer;
-
-          &:hover {
-            background: #ddd;
-          }
+        fa-icon {
+          font-size: 1rem;
         }
-      } 
+
+        &:hover {
+          background-color: #00796b;
+        }
+      }
     }
   }
 }
